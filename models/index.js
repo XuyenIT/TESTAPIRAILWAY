@@ -1,12 +1,17 @@
 const {Sequelize} = require("sequelize");
-const { DB, USER, PASSWORD, HOST, dialect, PORT } = require("../configs/db.config");
+const env = process.env.NODE_ENV || "development";
+console.log('env', env)
+const config = require("../configs/db.config")[env];
 const ProductModel = require("./product.model");
 
-const sequelize = new Sequelize(DB,USER,PASSWORD,{
-    host:HOST,
-    dialect:dialect,
-    port:PORT,
+console.log("config",config)
+// process.env.NODE_ENV
 
+
+const sequelize = new Sequelize(config.db,config.user,config.password,{
+    host:config.host,
+    dialect:config.dialect,
+    port:config.port,
 });
 const Product = ProductModel(sequelize);
 module.exports = {

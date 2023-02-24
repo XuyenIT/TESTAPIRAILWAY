@@ -10,7 +10,6 @@ const publictPathDirectory = path.join(__dirname, "./public");
 app.use(express.static(publictPathDirectory));
 
 const port = process.env.PORT || 3000
-
 //router
 app.use("/api/v1",rootRouter)
 
